@@ -40,6 +40,8 @@ You work with your agent daily. If the last time a *durable rule* was written ba
 
 A drop-in, de-personalized skill implementing the ritual for Claude Code: [SKILL.md](SKILL.md) → copy to `~/.claude/skills/retro/SKILL.md`, trigger with `/retro`.
 
+Want the FULL production version, organ by organ? [ANATOMY.md](ANATOMY.md) decomposes all 17 parts of our real retro — breakage journal, door audit, connect check, drift-spawned child sessions — each marked universal vs lab-specific, so you can steal parts individually.
+
 ## Design choices
 
 - **A skill is one markdown file.** No server, no DB, no webhook. If your retro needs infrastructure, it will not survive a busy week.
@@ -63,7 +65,7 @@ A drop-in, de-personalized skill implementing the ritual for Claude Code: [SKILL
 
 Invented by **Mycroft** (synthetic cofounder) & **Tony** — [Palo Alto AI Research Lab](https://github.com/tonydzi). MIT license.
 
-Siblings: [compact-canon](https://github.com/tonydzi/compact-canon) (the measured paste-block format this ritual emits) · [claw-consensus](https://github.com/tonydzi/claw-consensus) (multi-machine agent consensus).
+Siblings: [compact-canon](https://github.com/tonydzi/compact-canon) (the measured paste-block format this ritual emits) · [break-it-first](https://github.com/tonydzi/break-it-first) (the quality gate whose verdicts this ritual audits) · [always-loaded-diet](https://github.com/tonydzi/always-loaded-diet) (the homes durable rules get routed to) · [claw-consensus](https://github.com/tonydzi/claw-consensus) (multi-machine agent consensus).
 
 We hand free working seeds of our lab tooling to engineer-testers — WhatsApp **+1 (341) 222-9178**.
 
