@@ -1,5 +1,58 @@
 # claw-retro
 
+A one-file skill that makes your coding agent wrap up every session by saving what it learned, so you stop re-teaching it.
+
+**Who it's for:** people who code with Claude Code (or a similar agent) and keep repeating the same instructions.
+**What you get:** when you type `/retro`, the agent lists what changed, files each lasting lesson in one place, saves a note, and prints a block you paste to continue.
+
+## Quick start
+1. Create the folder `~/.claude/skills/retro/`.
+2. Copy `SKILL.md` from this repo into it.
+3. At the end of a work session, type `/retro` in your agent.
+
+**Done when:** the agent answers with a short recap and ends with one code block starting with `/compact`, ready for you to paste.
+
+> Want an AI agent to do it for you? Paste this to Claude Code / Codex / Cursor:
+> "Read the 'For AI agents' section of https://github.com/tonydzi/claw-retro and set it up for me."
+
+## For AI agents
+
+### Preconditions
+- Claude Code (reference target). Other agents that can read their own git log can follow the six moves in `SKILL.md`, but the install path below is Claude Code specific.
+- `git` available, and the human's project is a git repo (the skill uses `git log` for its inventory).
+- Ask the human: whether to install for all projects (`~/.claude/skills/retro/`) or one project (`<project>/.claude/skills/retro/`). Default to the user-level path if they do not care.
+
+### Install
+```bash
+git clone https://github.com/tonydzi/claw-retro
+mkdir -p ~/.claude/skills/retro
+cp claw-retro/SKILL.md ~/.claude/skills/retro/SKILL.md
+```
+No package, no server, no dependency. The whole skill is the one file `SKILL.md`.
+
+### Configure
+Nothing required. Optional: `SKILL.md` refers to "your rules file" and "your notes folder". Ask the human where their durable rules live (for example `CLAUDE.md` or `AGENTS.md`) and where retro notes should be archived, then tell the agent those paths when running `/retro`. Do not edit `SKILL.md` to hardcode private paths unless the human asks.
+
+### Verify
+```bash
+head -5 ~/.claude/skills/retro/SKILL.md
+```
+Expected: a frontmatter block that begins with `---` and `name: retro`. Then start a new agent session and type `/retro`. Expected: the agent runs the six moves and prints a fenced `/compact` block inline.
+
+### Uninstall / rollback
+```bash
+rm -r ~/.claude/skills/retro
+```
+Delete only that folder. If the human had an earlier `retro` skill, restore it from their backup before removing.
+
+### Rules for the agent
+- If `~/.claude/skills/retro/` already exists, show the human the difference and ask before overwriting.
+- The skill writes rules and notes to the human's files at session end. Show the human what it will route before it writes to a rules file.
+- Do not copy private paths, names or secrets into `SKILL.md` or into the archived note.
+- Never replace the inline `/compact` block with a pointer to a file. Print the block in the chat.
+
+## Details
+
 **An end-of-session retrospective ritual for coding agents that turns a finished session into durable rules, a permanent archive note, and a ready-to-paste compact block — so nothing the agent learned dies with the transcript** — the six moves ship as [SKILL.md](SKILL.md).
 
 ## The pain, in your words
