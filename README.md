@@ -28,6 +28,12 @@ git clone https://github.com/tonydzi/claw-retro
 mkdir -p ~/.claude/skills/retro
 cp claw-retro/SKILL.md ~/.claude/skills/retro/SKILL.md
 ```
+Windows PowerShell:
+```powershell
+git clone https://github.com/tonydzi/claw-retro
+New-Item -ItemType Directory -Force "$HOME\.claude\skills\retro"
+Copy-Item claw-retro\SKILL.md "$HOME\.claude\skills\retro\SKILL.md"
+```
 No package, no server, no dependency. The whole skill is the one file `SKILL.md`.
 
 ### Configure
@@ -37,12 +43,13 @@ Nothing required. Optional: `SKILL.md` refers to "your rules file" and "your not
 ```bash
 head -5 ~/.claude/skills/retro/SKILL.md
 ```
-Expected: a frontmatter block that begins with `---` and `name: retro`. Then start a new agent session and type `/retro`. Expected: the agent runs the six moves and prints a fenced `/compact` block inline.
+PowerShell: `Get-Content "$HOME\.claude\skills\retro\SKILL.md" -TotalCount 5`. Expected: a frontmatter block that begins with `---` and `name: retro`. That only proves the file is in place. The real check: start a new agent session and type `/retro`. Expected: the agent runs the six moves and prints a fenced `/compact` block inline. Side effect to warn the human about before running it: step 5 writes a new note file (for example `retros/retro-<date>-<topic>.md`) and step 4 may add lines to their rules file.
 
 ### Uninstall / rollback
 ```bash
 rm -r ~/.claude/skills/retro
 ```
+PowerShell: `Remove-Item -Recurse "$HOME\.claude\skills\retro"`.
 Delete only that folder. If the human had an earlier `retro` skill, restore it from their backup before removing.
 
 ### Rules for the agent
