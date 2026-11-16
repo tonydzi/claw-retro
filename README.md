@@ -31,7 +31,7 @@ cp claw-retro/SKILL.md ~/.claude/skills/claw-retro/SKILL.md
 Windows PowerShell:
 ```powershell
 git clone https://github.com/tonydzi/claw-retro
-New-Item -ItemType Directory -Force "$HOME\.claude\skills\retro"
+New-Item -ItemType Directory -Force "$HOME\.claude\skills\claw-retro"
 Copy-Item claw-retro\SKILL.md "$HOME\.claude\skills\claw-retro\SKILL.md"
 ```
 No package, no server, no dependency. The whole skill is the one file `SKILL.md`.
@@ -49,7 +49,7 @@ PowerShell: `Get-Content "$HOME\.claude\skills\claw-retro\SKILL.md" -TotalCount 
 ```bash
 rm -r ~/.claude/skills/claw-retro
 ```
-PowerShell: `Remove-Item -Recurse "$HOME\.claude\skills\retro"`.
+PowerShell: `Remove-Item -Recurse "$HOME\.claude\skills\claw-retro"`.
 Delete only that folder. If the human had an earlier `retro` skill, restore it from their backup before removing.
 
 ### Rules for the agent
