@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "claw-retro",
+  "displayName": "claw-retro",
+  "version": "1.0.0",
+  "description": "End-of-session retrospective skill for Claude Code. Inventories what a session actually built, classifies each artifact keep/one-off/promote, routes durable rules to one home with a door audit, archives a retro note and prints a ready /compact paste-block. Instructions only.",
+  "author": {
+    "name": "Anton Dziatkovskii",
+    "url": "https://github.com/tonydzi"
+  },
+  "homepage": "https://github.com/tonydzi/claw-retro",
+  "repository": "https://github.com/tonydzi/claw-retro",
+  "license": "MIT",
+  "keywords": [
+    "retrospective",
+    "retro",
+    "session-wrap-up",
+    "compact",
+    "agent-workflow",
+    "claude-code"
+  ],
+  "privacyPolicyUrl": "https://github.com/tonydzi/claw-retro/blob/main/PRIVACY.md",
+  "skills": "./skills/"
+}

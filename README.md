@@ -3,12 +3,12 @@
 A one-file skill that makes your coding agent wrap up every session by saving what it learned, so you stop re-teaching it.
 
 **Who it's for:** people who code with Claude Code (or a similar agent) and keep repeating the same instructions.
-**What you get:** when you type `/retro`, the agent lists what changed, files each lasting lesson in one place, saves a note, and prints a block you paste to continue.
+**What you get:** when you type `/claw-retro`, the agent lists what changed, files each lasting lesson in one place, saves a note, and prints a block you paste to continue.
 
 ## Quick start
-1. Create the folder `~/.claude/skills/retro/`.
+1. Create the folder `~/.claude/skills/claw-retro/`.
 2. Copy `SKILL.md` from this repo into it.
-3. At the end of a work session, type `/retro` in your agent.
+3. At the end of a work session, type `/claw-retro` in your agent.
 
 **Done when:** the agent answers with a short recap and ends with one code block starting with `/compact`, ready for you to paste.
 
@@ -20,40 +20,40 @@ A one-file skill that makes your coding agent wrap up every session by saving wh
 ### Preconditions
 - Claude Code (reference target). Other agents that can read their own git log can follow the six moves in `SKILL.md`, but the install path below is Claude Code specific.
 - `git` available, and the human's project is a git repo (the skill uses `git log` for its inventory).
-- Ask the human: whether to install for all projects (`~/.claude/skills/retro/`) or one project (`<project>/.claude/skills/retro/`). Default to the user-level path if they do not care.
+- Ask the human: whether to install for all projects (`~/.claude/skills/claw-retro/`) or one project (`<project>/.claude/skills/claw-retro/`). Default to the user-level path if they do not care.
 
 ### Install
 ```bash
 git clone https://github.com/tonydzi/claw-retro
-mkdir -p ~/.claude/skills/retro
-cp claw-retro/SKILL.md ~/.claude/skills/retro/SKILL.md
+mkdir -p ~/.claude/skills/claw-retro
+cp claw-retro/SKILL.md ~/.claude/skills/claw-retro/SKILL.md
 ```
 Windows PowerShell:
 ```powershell
 git clone https://github.com/tonydzi/claw-retro
 New-Item -ItemType Directory -Force "$HOME\.claude\skills\retro"
-Copy-Item claw-retro\SKILL.md "$HOME\.claude\skills\retro\SKILL.md"
+Copy-Item claw-retro\SKILL.md "$HOME\.claude\skills\claw-retro\SKILL.md"
 ```
 No package, no server, no dependency. The whole skill is the one file `SKILL.md`.
 
 ### Configure
-Nothing required. Optional: `SKILL.md` refers to "your rules file" and "your notes folder". Ask the human where their durable rules live (for example `CLAUDE.md` or `AGENTS.md`) and where retro notes should be archived, then tell the agent those paths when running `/retro`. Do not edit `SKILL.md` to hardcode private paths unless the human asks.
+Nothing required. Optional: `SKILL.md` refers to "your rules file" and "your notes folder". Ask the human where their durable rules live (for example `CLAUDE.md` or `AGENTS.md`) and where retro notes should be archived, then tell the agent those paths when running `/claw-retro`. Do not edit `SKILL.md` to hardcode private paths unless the human asks.
 
 ### Verify
 ```bash
-head -5 ~/.claude/skills/retro/SKILL.md
+head -5 ~/.claude/skills/claw-retro/SKILL.md
 ```
-PowerShell: `Get-Content "$HOME\.claude\skills\retro\SKILL.md" -TotalCount 5`. Expected: a frontmatter block that begins with `---` and `name: retro`. That only proves the file is in place. The real check: start a new agent session and type `/retro`. Expected: the agent runs the six moves and prints a fenced `/compact` block inline. Side effect to warn the human about before running it: step 5 writes a new note file (for example `retros/retro-<date>-<topic>.md`) and step 4 may add lines to their rules file.
+PowerShell: `Get-Content "$HOME\.claude\skills\claw-retro\SKILL.md" -TotalCount 5`. Expected: a frontmatter block that begins with `---` and `name: claw-retro`. That only proves the file is in place. The real check: start a new agent session and type `/claw-retro`. Expected: the agent runs the six moves and prints a fenced `/compact` block inline. Side effect to warn the human about before running it: step 5 writes a new note file (for example `retros/retro-<date>-<topic>.md`) and step 4 may add lines to their rules file.
 
 ### Uninstall / rollback
 ```bash
-rm -r ~/.claude/skills/retro
+rm -r ~/.claude/skills/claw-retro
 ```
 PowerShell: `Remove-Item -Recurse "$HOME\.claude\skills\retro"`.
 Delete only that folder. If the human had an earlier `retro` skill, restore it from their backup before removing.
 
 ### Rules for the agent
-- If `~/.claude/skills/retro/` already exists, show the human the difference and ask before overwriting.
+- If `~/.claude/skills/claw-retro/` already exists, show the human the difference and ask before overwriting.
 - The skill writes rules and notes to the human's files at session end. Show the human what it will route before it writes to a rules file.
 - Do not copy private paths, names or secrets into `SKILL.md` or into the archived note.
 - Never replace the inline `/compact` block with a pointer to a file. Print the block in the chat.
@@ -98,7 +98,7 @@ You work with your agent daily. If the last time a *durable rule* was written ba
 5. **Archive the retro as a note** — in the same 7-header format the compact block uses, so retro and compact are never written twice.
 6. **Print the ready `/compact <block>` inline** — filled with this session's facts, one fenced block, "copy and paste as your next message". **Never a pointer to a file.** We shipped the pointer version first; the human vetoed it within weeks ("go take the text from that file yourself" is not a deliverable). The block format and why inline-paste is the only path that works: [compact-canon](https://github.com/tonydzi/compact-canon).
 
-A drop-in, de-personalized skill implementing the ritual for Claude Code: [SKILL.md](SKILL.md) → copy to `~/.claude/skills/retro/SKILL.md`, trigger with `/retro`.
+A drop-in, de-personalized skill implementing the ritual for Claude Code: [SKILL.md](SKILL.md) → copy to `~/.claude/skills/claw-retro/SKILL.md`, trigger with `/claw-retro`.
 
 Want the FULL production version, organ by organ? [ANATOMY.md](ANATOMY.md) decomposes all 17 parts of our real retro — breakage journal, door audit, connect check, drift-spawned child sessions — each marked universal vs lab-specific, so you can steal parts individually.
 
@@ -119,7 +119,7 @@ Want the FULL production version, organ by organ? [ANATOMY.md](ANATOMY.md) decom
 
 **What exactly is a "door"?** An executable path that invokes the rule: a skill step, a hook, a scheduled check. Our own audit in 2026 found 76% of fresh rules had none — they were prose nobody would ever run. A rule without a door is a wish.
 
-**Does the agent run this itself?** Yes — that's the point. You type `/retro`; the agent does the six moves of [SKILL.md](SKILL.md) and hands you the paste-block. The human's only job is pasting one block.
+**Does the agent run this itself?** Yes — that's the point. You type `/claw-retro`; the agent does the six moves of [SKILL.md](SKILL.md) and hands you the paste-block. The human's only job is pasting one block.
 
 ## Attribution & license
 

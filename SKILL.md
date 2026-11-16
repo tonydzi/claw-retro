@@ -1,14 +1,13 @@
 ---
-name: retro
+name: claw-retro
 description: >-
-  End-of-session retrospective: recall & reconcile against everything decided since, inventory
-  what was actually built (git + touched files, not memory), classify each artifact
-  keep/one-off/promote, route durable rules to exactly one permanent home with a "door" audit,
-  archive the retro as a note in the 7-header compact format, and PRINT the ready /compact
-  paste-block inline. Trigger on "/retro" or any end-of-session wrap-up request.
+  End-of-session retrospective. Use when the user types /claw-retro or asks to wrap up a
+  session: reconcile with later decisions, inventory what was really built from git, classify
+  artifacts keep/one-off/promote, route each durable rule to one home with a door audit,
+  archive a retro note, and print a ready /compact paste-block.
 ---
 
-# /retro — session retrospective (what we built · what we keep)
+# /claw-retro — session retrospective (what we built · what we keep)
 
 A retro is the Agile end-of-cycle ritual (Keep / Drop / Try) applied to an agent session:
 look back, decide what survives. Goal: **nothing reusable drowns in the transcript.**

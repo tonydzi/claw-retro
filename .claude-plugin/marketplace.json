@@ -1,0 +1,16 @@
+{
+  "name": "claw-retro",
+  "description": "Marketplace for the claw-retro end-of-session retrospective skill.",
+  "owner": {
+    "name": "Anton Dziatkovskii",
+    "url": "https://github.com/tonydzi"
+  },
+  "plugins": [
+    {
+      "name": "claw-retro",
+      "source": "./plugin",
+      "description": "End-of-session retrospective skill: inventory what was built, keep/one-off/promote, route rules to one home with a door audit, archive a note, print a /compact block.",
+      "version": "1.0.0"
+    }
+  ]
+}
